@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/saul/Documents/code/Scala/scala-hello/src/main/scala/Main.scala:5:3: expected class or object definition[0m
+[0m[[0m[31merror[0m] [0m[0m  println("你好")[0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
