@@ -157,6 +157,149 @@ val addOne = (x: Int) => x + 1
   }
 ```
 
+## 类型系统
+
+- Any
+  - AnyVal
+    - Double
+    - Float
+    - Long
+    - Int
+    - Short
+    - Byte
+    - Unit
+    - Boolean
+    - Boolean
+    - Chart
+  - AnyRef(java.lang.Object)
+    - List
+    - Option
+    - YourClass
+
+
+```scala
+  val list: List[Any] = List(
+    "a sring",
+    732,
+    'c',
+    true,
+    () => "an anonymous function returning a string"
+    )
+  list.foreach(element => println((element)))
+```
+
+### 转型
+
+**Byte > Short > Int > Long > Float > Double**
+
+### Class
+
+> Unlike many other languages, the primary constructor is in the class signature (var x: Int, var y: Int)
+
+```scala
+  class Pos(var x: Int, var y: Int) {
+    def move(dx: Int, dy: Int): Unit = {
+      x = x + dx
+      y = y + dy
+    }
+    override def toString: String =
+      s"($x, $y)"
+  }
+```
+
+**private and GETTER/SETTER**
+
+> Notice the special syntax for the setters: the method has _= appended to the identifier of the getter and the parameters come after.<br>
+Parameters without val or var are private values, visible only within the class.
+
+
+
+```scala
+  class Point {
+    private var _x = 0
+    private var _y = 0
+    private val bound = 100
+
+    def x = _x
+    def x_= (newValue: Int): Unit = {
+      if(newValue < bound) _x = newValue else printWarning
+    }
+
+    def y = _y
+    def y_= (newValue: Int): Unit = {
+      if(newValue < bound) _y = newValue else printWarning
+    }
+
+    private def printWarning = println("WARNING : OUT OF BOUNDS")
+  }
+
+  val po1 = new Point
+  po1.x = 99
+  po1.y = 102
+```
+
+### trait [共性，限制]
+
+> Classes and objects can extend traits but traits cannot be instantiated and therefore have no parameters.
+
+> This IntIterator class takes a parameter to as an upper bound. It extends Iterator[Int] which means that the next method must return an Int.
+
+```scala
+  trait Iterator[A] {
+    def hasNext: Boolean
+    def next(): A
+  }
+
+  class IntIterator(to: Int) extends Iterator[Int] {
+    private var current = 0
+    override def hasNext: Boolean = current < to
+    override def next(): Int = {
+      if(hasNext) {
+        val t = current
+        current += 1
+        t
+      } else 0
+    }
+  }
+
+  val iterator = new IntIterator(10)
+  println(iterator.next())
+  println(iterator.next())
+  println(iterator.next())
+  println(iterator.next())
+  println(iterator.next())
+  println(iterator.next())
+  println(iterator.next())
+  println(iterator.next())
+  println(iterator.next())
+  println(iterator.next())
+  println(iterator.next())
+  println(iterator.next())
+  println(iterator.next())
+  println(iterator.next())
+```
+
+**Subtyping**
+
+```scala
+  import scala.collection.mutable.ArrayBuffer
+  trait Pet {
+    val name: String
+  }
+
+  class Cat(val name: String) extends Pet
+  class Dog(val name: String) extends Pet
+
+  val dog = new Dog("来福")
+  val cat = new Cat("喵")
+
+  val animals = ArrayBuffer.empty[Pet]
+  animals.append(dog)
+  animals.append(cat)
+  animals.foreach(pet => println(pet.name))
+```
+
+
 
 
 
