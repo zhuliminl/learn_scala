@@ -41,14 +41,14 @@ object Main extends App {
   }
   println(getSquarrString(22))
 
-  class Greeter(prefix: String, suffix: String) {
+  class Greeter1(prefix: String, suffix: String) {
     def greet(name: String): Unit =
       println(prefix + name + suffix)
   }
 
-  val greeter = new Greeter("Hello ", " !")
-  greeter.greet("Saul")
-  // println(greeter.greet())
+  val greeter1 = new Greeter1("Hello ", " !")
+  greeter1.greet("Saul")
+  // println(greeter1.greet())
 
   // case class
   case class Point(x: Int, y: Int)
@@ -69,6 +69,43 @@ object Main extends App {
   } else {
     println(point + " and " + yetAnotherPoint + "are different")
   }
+
+  // object
+  object IdFactory {
+    private var counter = 0
+    def create(): Int = {
+      counter += 1
+      counter
+    }
+  }
+
+  val newId: Int = IdFactory.create()
+  println(newId)
+  val newerId: Int = IdFactory.create()
+  println(newerId)
+
+  // traits
+  trait Greeter {
+    // def greet(name: String): Unit
+    def greeting(name: String): Unit = {
+      println("Hello  " + name + "  !")
+    }
+  }
+  // 默认继承
+  class DefaultGreeter extends Greeter
+  val greeter = new DefaultGreeter()
+  greeter.greeting("Scala Developer")
+
+  // 覆盖继承
+  class CustomizableGreeter(prefix: String, profix: String) extends Greeter {
+    override def greeting(name: String): Unit = {
+      println(prefix + name + profix)
+    }
+  }
+
+  val customGreeter = new CustomizableGreeter("你觉得 Scala 怎么样 ", " ?")
+  customGreeter.greeting("Saul")
+
 }
 
 

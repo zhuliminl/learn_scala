@@ -71,6 +71,8 @@ val addOne = (x: Int) => x + 1
 
 ### Case Classes
 
+**不需要 New 构造**
+
 **按值比较**
 
 ```scala
@@ -102,7 +104,58 @@ val addOne = (x: Int) => x + 1
 
 > Objects are single instances of their own definitions. You can think of them as singletons of their own classes.
 
+```scala
+  object IdFactory {
+    private var counter = 0
+    def create(): Int = {
+      counter += 1
+      counter
+    }
+  }
 
+  val newId: Int = IdFactory.create()
+  println(newId)
+  val newerId: Int = IdFactory.create()
+  println(newerId)
+```
+
+### Traits 特质
+
+> Traits are types containing certain fields and methods. Multiple traits can be combined.
+
+```scala
+  // traits
+  trait Greeter {
+    // def greet(name: String): Unit
+    def greeting(name: String): Unit = {
+      println("Hello  " + name + "  !")
+    }
+  }
+  // 默认继承
+  class DefaultGreeter extends Greeter
+  val greeter = new DefaultGreeter()
+  greeter.greeting("Scala Developer")
+
+  // 覆盖继承
+  class CustomizableGreeter(prefix: String, profix: String) extends Greeter {
+    override def greeting(name: String): Unit = {
+      println(prefix + name + profix)
+    }
+  }
+
+  val customGreeter = new CustomizableGreeter("你觉得 Scala 怎么样 ", " ?")
+  customGreeter.greeting("Saul")
+```
+
+### Main 入口
+
+```scala
+  object Main {
+    def main(args: Array[String]): Unit = {
+      println("Hello, Scala developer")
+    }
+  }
+```
 
 
 
