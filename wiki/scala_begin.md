@@ -2,13 +2,13 @@ Scala 入门
 
 ## 如何开始一个 Scala 项目
 
-#### 1 创建模版项目
+**创建模版项目**
 
 ```
 sbt new scala/hello-world.g8
 ```
 
-#### 2 进入项目，并持续运行
+**进入项目，并持续运行**
 
 ```
 cd project_name
@@ -19,7 +19,7 @@ sbt
 
 ## 基础知识
 
-##### Block
+### Block
 
 ```scala
   println({
@@ -29,13 +29,13 @@ sbt
   })
 ```
 
-#### Anonymous Function
+### Anonymous Function
 
 ```scala
 val addOne = (x: Int) => x + 1
 ```
 
-#### Method
+### Method
 
 ```scala
   def sum(x: Int, y: Int): Int = x + y
@@ -57,7 +57,7 @@ val addOne = (x: Int) => x + 1
 
 ```
 
-#### Unit 空类型、新建立类
+### Unit 空类型、新建立类
 
 ```scala
   class Greeter(prefix: String, suffix: String) {
@@ -69,7 +69,7 @@ val addOne = (x: Int) => x + 1
   greeter.greet("Saul")
 ```
 
-#### Case Classes
+### Case Classes
 
 **按值比较**
 
@@ -96,7 +96,7 @@ val addOne = (x: Int) => x + 1
 
 ```
 
-#### Object
+### Object
 
 **对象可以看成类的一个单例**
 
