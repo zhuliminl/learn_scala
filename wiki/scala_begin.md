@@ -11,8 +11,21 @@ sbt new scala/hello-world.g8
 ##### 2 进入项目，并持续运行
 
 ```
-cd project_name 
+cd project_name
 sbt
 ...
 ~run
+```
+
+### 基础知识
+
+##### Block
+
+```
+  println({
+    val x = 9
+    x + 1
+    "xxx"
+  })
+
 ```
