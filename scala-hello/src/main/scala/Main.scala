@@ -49,6 +49,26 @@ object Main extends App {
   val greeter = new Greeter("Hello ", " !")
   greeter.greet("Saul")
   // println(greeter.greet())
+
+  // case class
+  case class Point(x: Int, y: Int)
+
+  val point = Point(1, 2)
+  val anotherPoint = Point(1, 2)
+  val yetAnotherPoint = Point(99, 99)
+
+  // 按值比较
+  if(point == anotherPoint) {
+    println(point + " and " + anotherPoint + "are the same")
+  } else {
+    println(point + " and " + anotherPoint + "are different")
+  }
+
+  if(point == yetAnotherPoint) {
+    println(point + " and " + yetAnotherPoint + "are the same")
+  } else {
+    println(point + " and " + yetAnotherPoint + "are different")
+  }
 }
 
 
