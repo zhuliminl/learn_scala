@@ -169,7 +169,6 @@ val addOne = (x: Int) => x + 1
     - Byte
     - Unit
     - Boolean
-    - Boolean
     - Chart
   - AnyRef(java.lang.Object)
     - List
