@@ -86,10 +86,11 @@ object MyModule {
 ```
 ### 多态函数
 
-> 多态函数有时也被称之为**泛型函数**
+> 多态函数有时也被称之为**泛型函数**。基于类型的抽象化
 
 ```scala
   // findFist 泛型
+  // A 是类型变量
   def findFirstA[A](as: Array[A], p: A => Boolean): Int = {
     @annotation.tailrec
     def loop(n: Int): Int = {
