@@ -44,3 +44,78 @@
 
 > 引用透明使得程序具备了**等式推理**的能力
 
+### 高阶函数 `HOF`
+
+```scala
+object MyModule {
+
+  def abs(n: Int): Int =
+    if(n < 0) -n
+    else n
+
+  def factorial(n: Int): Int = {
+    def go(n: Int, acc: Int): Int =
+      if(n <= 0) acc
+      else go(n-1, n*acc)
+    go(n, 1)
+  }
+
+  private def formatAbs(x: Int) = {
+    val msg = "绝对值 %d 是 %d"
+    msg.format(x, abs(x))
+  }
+
+  private def formatFactorial(n: Int) = {
+    val msg = "The factorial of %d is %d"
+    msg.format(n, factorial(n))
+  }
+
+  // HOF
+  def formatResult(name: String, n: Int, f: Int => Int) = {
+    val msg = "The %s of %d is %d"
+    msg.format(name, n, f(n))
+  }
+
+  def main(args: Array[String]): Unit =
+    // var acc = factorial(7)
+    // println(factorial(7))
+    // println(formatAbs(-43))
+    println(formatResult("绝对值", -4, abs))
+    println(formatResult("阶乘值", 7, factorial))
+}
+```
+### 多态函数
+
+> 多态函数有时也被称之为**泛型函数**
+
+```scala
+  // findFist 泛型
+  def findFirstA[A](as: Array[A], p: A => Boolean): Int = {
+    @annotation.tailrec
+    def loop(n: Int): Int = {
+      if(n >= as.length) -1
+      // p 是回调函数， as(n) 是参数，这个参数类型可以是任意的
+      else if(p(as(n))) n
+      else loop(n + 1)
+    }
+    loop(0)
+  }
+
+    val names = Array("saul", "demo", "elena", "queen", "carrie")
+    //泛型之后的可能
+    val indexA = findFirstA(names,(x: String) => x == "demo")
+    println(indexA)
+    println(findFirstA(Array(2,3,4,5), (x: Int) => x == 3))
+```
+
+
+
+
+
+
+
+
+
+
+
+
