@@ -109,6 +109,32 @@ object MyModule {
     println(findFirstA(Array(2,3,4,5), (x: Int) => x == 3))
 ```
 
+#### 通过类型实现多态
+
+```scala
+  // 柯里化、部分应用、局部套用
+  // 一个高阶函数，它接受一个带有两个参数的函数，进行部分应用
+  def partial1[A, B, C](a: A, f: (A, B) => C): B => C =
+    (b: B) => f(a, b)
+
+  // 注意参数括号的挪移，意味着个数必要的变化
+  // 最终的函数可以看到参数的传递可以分两次前后传递了。总之，最后又得到了我们想要的结果 f(a, b)
+  def curry[A, B, C](f: (A, B) => C): A => (B => C) =
+    a => b => f(a, b)
+
+  def curry[A, B, C](f: (A, B) => C): A => (B => C) =
+     a => b => f(a, b)
+
+  // 反柯里化
+  def uncurry[A, B, C](f: A => B => C): (A, B) => C =
+    // f(a)(b) 即代表执行了，并得到 C 这个结果
+    (a, b) => f(a)(b)
+
+  // 组合函数。将函数 f 和 函数 g 组合
+  def compose[A, B, C](f: B => C, g: A => B): A => C =
+    a => f(g(a))
+```
+
 
 
 
