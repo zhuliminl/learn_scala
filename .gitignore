@@ -1,2 +1,4 @@
 scala-hello/target/*
 scala-hello/project/*
+scala-fp/scala-function/target/*
+scala-fp/scala-function/project/*
